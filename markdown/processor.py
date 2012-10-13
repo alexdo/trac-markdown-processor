@@ -20,10 +20,17 @@ import re
 from StringIO import StringIO
 
 # links, autolinks, and reference-style links
-LINK = re.compile(
-    r'(\]\()([^) ]+)([^)]*\))|(<)([^>]+)(>)|(\n\[[^]]+\]: *)([^ \n]+)(.*\n)'
-)
+LINK = re.compile(r'(\]\()([^) ]+)([^)]*\))|(<)([^>]+)(>)|(\n\[[^]]+\]: *)([^ \n]+)(.*\n)')
 HREF = re.compile(r'href=[\'"]?([^\'" ]*)', re.I)
+
+# set some cool extras:
+MD_EXTRAS = [
+    "code-friendly",      # ignore _ + __ formattings
+    "fenced-code-blocks", # syntax highlighting!
+    "header-ids",         # explains itself by name
+    "smarty-pants",       # typo goodness (cf. http://daringfireball.net/projects/smartypants)
+    "wiki-tables",         # render trac-wiki tables within md macro
+]
 
 class mdMacro(WikiMacroBase):
     """enables the markdown processor macro."""
@@ -47,36 +54,12 @@ class mdMacro(WikiMacroBase):
             return pre + str(url) + suf
             
         try:
-            # Import the package
+            # Import & convert
             import markdown2
-
-            """
-            Set some cool extras:
-             * code-friendly:      ignore _ + __ formattings
-             * fenced-code-blocks: syntax highlighting! 
-             * header-ids:         doesn't need an expl., right?
-             * smarty-pants:       typo goodness (cf. http://daringfireball.net/projects/smartypants)
-             * wiki-tables:        render trac-wiki tables within md macro
-            """
-            markdown_extras = [
-                "code-friendly",
-                "fenced-code-blocks",
-                "header-ids",
-                "smarty-pants",
-                "wiki-tables",
-            ]
-
-            # convert it, FFS!
-            return markdown2.markdown(re.sub(LINK, convert, content), extras=markdown_extras)
+            return markdown2.markdown(re.sub(LINK, convert, content), extras=MD_EXTRAS)
         except ImportError:
+            # no markdown2 package found?
             msg = 'Error importing python-markdown2, install it from '
             url = 'https://github.com/trentm/python-markdown2'
             return system_message(tag(msg, tag.a('here', href="%s" % url), '.'))
-
-
-class markdownMacro(WikiMacroBase):
-    """ an alias so #!markdown may also be used """
-
-    def expand_macro(self, formatter, name, content):
-        return mdMacro.expand_macro(formatter, name, content)
 
