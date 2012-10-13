@@ -78,5 +78,5 @@ class markdownMacro(WikiMacroBase):
     """ an alias so #!markdown may also be used """
 
     def expand_macro(self, formatter, name, content):
-        return mdMacro.expand_macro(self, formatter, name, content)
+        return mdMacro.expand_macro(formatter, name, content)
 
