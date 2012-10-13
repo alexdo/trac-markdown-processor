@@ -17,7 +17,7 @@ setup(
     url = 'http://alexdo.de',
     license = 'CC-BY-SA 3.0',
 
-    entry_points = { 'trac.plugins': [ 'markdown.macro = markdown.macro' ] },
+    entry_points = { 'trac.plugins': [ 'markdown.processor = markdown.processor' ] },
     classifiers = ['Framework :: Trac'],
     install_requires = ['Trac'],
 )
