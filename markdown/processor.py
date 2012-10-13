@@ -25,7 +25,7 @@ LINK = re.compile(
 )
 HREF = re.compile(r'href=[\'"]?([^\'" ]*)', re.I)
 
-class mdProcessor(WikiMacroBase):
+class mdMacro(WikiMacroBase):
     """enables the markdown processor macro."""
 
     def expand_macro(self, formatter, name, content):
@@ -72,3 +72,11 @@ class mdProcessor(WikiMacroBase):
             msg = 'Error importing python-markdown2, install it from '
             url = 'https://github.com/trentm/python-markdown2'
             return system_message(tag(msg, tag.a('here', href="%s" % url), '.'))
+
+
+class markdownMacro(WikiMacroBase):
+    """ an alias so #!markdown may also be used """
+
+    def expand_macro(self, formatter, name, content):
+        return mdMacro.expand_macro(self, formatter, name, content)
+
