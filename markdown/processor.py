@@ -6,8 +6,8 @@
     @author  Alexander Dormann <alexander.dormann@30doradus.de>
     @date    13.10.2012
     @version 1.0-b2
-    @package MarkdownMacro
-    @file processor.py
+    @package MarkdownProcessor
+    @file    processor.py
 """
 
 from trac.core import Component, implements
@@ -25,7 +25,7 @@ LINK = re.compile(
 )
 HREF = re.compile(r'href=[\'"]?([^\'" ]*)', re.I)
 
-class MarkdownMacro(WikiMacroBase):
+class mdProcessor(WikiMacroBase):
     """enables the markdown processor macro."""
 
     def expand_macro(self, formatter, name, content):
