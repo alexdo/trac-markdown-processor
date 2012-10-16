@@ -5,7 +5,7 @@
 
     @author  Alexander Dormann <alexander.dormann@30doradus.de>
     @date    16.10.2012
-    @version 1.0.1-b1
+    @version 1.0.1-b2
     @package MarkdownProcessor
     @file    processor.py
 """
@@ -58,7 +58,13 @@ class mdMacro(WikiMacroBase):
         
 	def emojify(html):
             pattern = ":([a-z0-9\\+\\-_]+):"
-            link = "<img alt=\"\\1\" height=\"20\" style=\"vertical-align:middle\" width=\"20\" src=\"/chrome/markdown/emoji/\\1.png\" />"
+            link = "<img\
+                alt=\"\\1\"\
+                title=\":\\1:\"\
+                height=\"20\"\
+                style=\"vertical-align:middle\"\
+                width=\"20\"\
+                src=\"/chrome/markdown/emoji/\\1.png\" />"
 
             emojify_html = re.sub(pattern, link, html)
             return emojify_html
