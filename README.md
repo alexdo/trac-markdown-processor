@@ -11,6 +11,9 @@ and bundles the following python-markdown2
 [extras](https://github.com/trentm/python-markdown2/wiki/Extras):   
 code-friendly, fenced-code-blocks, header-ids, smarty-pants, wiki-tables
 
+Since 1.0.1, this processor supports Emojis according to http://emoji-cheat-sheet.com
+
+
 # Dependencies
 
 * python-markdown2
@@ -25,8 +28,7 @@ code-friendly, fenced-code-blocks, header-ids, smarty-pants, wiki-tables
 To install python-markdown2 run *one* of the following:
 
     pip install markdown2
-    pypm install markdown2      # if you use ActivePython
-(activestate.com/activepython)
+    pypm install markdown2      # if you use ActivePython (activestate.com/activepython)
     easy_install markdown2      # if this is the best you have
     python setup.py install
 
@@ -66,6 +68,8 @@ Anything within a `#!md` processor tag will be parsed /w markdown:
     
     Lorem *ipsum* dolor sit **amet**.
     
+    :smiley: <- an emoji!
+
     + One
     + Two
     + Three

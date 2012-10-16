@@ -7,7 +7,7 @@ from setuptools import setup
 setup(
     name = 'TracMarkdownProcessor',
     packages = ['markdown'],
-    version = '1.0-b4',
+    version = '1.0.1-b1',
 
     author = 'Alexander Dormann',
     author_email = 'alexander.dormann@30doradus.de',
